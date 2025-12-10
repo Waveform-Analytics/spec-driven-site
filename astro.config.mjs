@@ -7,13 +7,31 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Spec-Driven Science',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/Waveform-Analytics/spec-driven-site' }],
 			sidebar: [
+				{
+					label: 'Get Started',
+					items: [
+						{ label: 'Overview', slug: 'get-started' },
+						{ label: 'Scaffold a Project', slug: 'get-started/scaffold' },
+						{ label: 'Your First Spec', slug: 'get-started/first-spec' },
+					],
+				},
 				{
 					label: 'Guides',
 					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
+						{
+							label: 'The Method',
+							autogenerate: { directory: 'guides/method' },
+						},
+						{
+							label: 'AI Collaboration',
+							autogenerate: { directory: 'guides/ai' },
+						},
+						{
+							label: 'Examples',
+							autogenerate: { directory: 'guides/examples' },
+						},
 					],
 				},
 				{
