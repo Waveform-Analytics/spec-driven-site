@@ -4,6 +4,8 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://waveform-analytics.github.io',
+	base: '/spec-driven-site',
 	integrations: [
 		starlight({
 			title: 'Spec-Driven Science',

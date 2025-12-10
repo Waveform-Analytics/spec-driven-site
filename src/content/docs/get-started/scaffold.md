@@ -8,7 +8,7 @@ The scaffolding script creates a project structure with spec templates ready to 
 ## Quick start
 
 ```bash
-curl -O https://spec-driven.science/scaffold.py
+curl -O https://waveform-analytics.github.io/spec-driven-site/scaffold.py
 python scaffold.py
 ```
 
