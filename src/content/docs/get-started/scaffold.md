@@ -3,4 +3,84 @@ title: Scaffold a Project
 description: Run the scaffolding script to bootstrap a spec-driven project.
 ---
 
-*Placeholder: Instructions for downloading and running scaffold.py to create a new project.*
+The scaffolding script creates a project structure with spec templates ready to go. No dependencies—just Python.
+
+## Quick start
+
+```bash
+curl -O https://spec-driven.science/scaffold.py
+python scaffold.py
+```
+
+The script will ask for:
+
+1. **Project name** — Used for the directory and in generated files
+2. **One-line description** — What the project does
+3. **Project type** — Affects which templates are included:
+   - *Data pipeline* — Adds data flow architecture template
+   - *Analysis tool* — General structure
+   - *Algorithm implementation* — Adds algorithm and validation templates
+   - *General* — Basic structure
+4. **AI tool** — Creates the appropriate config file:
+   - *Claude Code* → `.claude/CLAUDE.md`
+   - *Cursor* → `.cursorrules`
+   - *GitHub Copilot* → `.github/copilot-instructions.md`
+   - *Other/None* → Skips AI config
+
+## What you get
+
+```
+your-project/
+├── specs/
+│   ├── spec-format.md          # How to write specs (reference this!)
+│   ├── 00-overview.md          # Your project overview (start here)
+│   ├── 01-requirements/
+│   │   └── functional.md       # Requirements template
+│   ├── 02-architecture/
+│   │   └── data-flow.md        # If you chose "Data pipeline"
+│   ├── 03-implementation/
+│   ├── 04-algorithms/          # If you chose "Algorithm implementation"
+│   │   └── algorithm-template.md
+│   ├── 05-validation/          # If you chose "Algorithm implementation"
+│   │   └── validation-plan.md
+│   └── 99-decisions/
+│       └── adr-000-template.md # Decision record template
+├── src/
+├── tests/
+├── .claude/CLAUDE.md           # If you chose Claude Code
+├── CONTRIBUTING.md
+└── README.md
+```
+
+## The templates
+
+Each generated file includes **inline guidance** explaining what to write. The guidance appears in HTML comments or bracketed placeholders:
+
+```markdown
+<!--
+This is your project's overview spec. It should answer:
+- What problem does this project solve?
+- Who is it for?
+- What are the key capabilities?
+
+Delete these instructions once you've written the overview.
+-->
+
+## Problem Statement
+
+[What problem are you solving? Why does it matter?]
+```
+
+Fill in the brackets, delete the comments as you go.
+
+## After scaffolding
+
+1. `cd your-project`
+2. Open `specs/00-overview.md` and describe your project
+3. Read `specs/spec-format.md` to understand how specs work here
+4. Run `git init` to start version control
+5. Start a conversation with your AI assistant about requirements
+
+## Next step
+
+Once you have a project, [write your first spec](/get-started/first-spec/).

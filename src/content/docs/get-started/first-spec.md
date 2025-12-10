@@ -3,4 +3,173 @@ title: Your First Spec
 description: Write your first specification with AI assistance.
 ---
 
-*Placeholder: A minimal example walking through writing a first spec.*
+Let's write a spec for something simple: a function that calculates the moving average of a time series. This walkthrough shows the full cycle—spec, AI collaboration, implementation, verification.
+
+## Start with what you need
+
+You have some sensor data and you want to smooth it. You know you need a moving average, but you haven't pinned down the details yet.
+
+Create a new file `specs/03-implementation/moving-average.md`:
+
+```markdown
+# Moving Average Function
+
+**Status**: Draft
+
+## Purpose
+
+Smooth noisy time series data using a moving average.
+
+## Requirements
+
+- **[MUST]** Calculate moving average for a 1D array of values
+- **[MUST]** Accept configurable window size
+- **[SHOULD]** Handle edge cases (beginning/end of array)
+
+## Open Questions
+
+- What should happen at the edges? Shrink the window? Pad with NaN?
+- Should the window be centered or trailing?
+- What if the window size is larger than the array?
+```
+
+This is rough—and that's fine. You've captured what you know and what you don't.
+
+## Use AI to refine it
+
+Now ask your AI assistant to help think it through. Here's an example conversation:
+
+> **You:** I'm writing a spec for a moving average function. Can you look at `specs/03-implementation/moving-average.md` and help me think through the open questions?
+
+> **AI:** Looking at your spec, here are some considerations for each question:
+>
+> **Edge handling:** Common approaches are:
+> - *Shrinking window*: Use fewer points at edges, always produce output
+> - *NaN padding*: Return NaN where full window isn't available
+> - *Reflect/mirror*: Extend data by reflection (common in signal processing)
+>
+> For scientific data, NaN padding is often preferred—it makes clear where the full calculation wasn't possible, so downstream analysis can handle it explicitly.
+>
+> **Centered vs trailing:**
+> - *Trailing*: Output at index i uses points [i-window+1, i]. Causal—can be computed in real-time.
+> - *Centered*: Output at index i uses points around i. Better for offline analysis—doesn't shift features in time.
+>
+> For post-hoc analysis of sensor data, centered is usually what you want.
+>
+> **Window larger than array:** Two reasonable choices:
+> - Return all NaN (can't compute any valid windows)
+> - Raise an error (probably a caller mistake)
+>
+> I'd suggest raising an error—if someone passes a 10-point array with a 100-point window, that's likely a bug.
+
+Now you can update the spec with decisions:
+
+```markdown
+# Moving Average Function
+
+**Status**: Draft
+
+## Purpose
+
+Smooth noisy time series data using a centered moving average.
+
+## Requirements
+
+- **[MUST]** Calculate moving average for a 1D numpy array
+- **[MUST]** Accept configurable window size (positive odd integer)
+- **[MUST]** Use centered window (output[i] averages points around i)
+- **[MUST]** Return NaN for positions where full window isn't available
+- **[MUST]** Raise ValueError if window size > array length
+
+## Interface
+
+```python
+def moving_average(data: np.ndarray, window: int) -> np.ndarray:
+    """
+    Calculate centered moving average.
+
+    Args:
+        data: 1D array of values
+        window: Window size (must be positive odd integer)
+
+    Returns:
+        Array of same length with smoothed values.
+        Edges contain NaN where full window unavailable.
+
+    Raises:
+        ValueError: If window > len(data) or window is not positive odd integer
+    """
+```
+
+## Edge Cases
+
+| Input | Expected Output |
+|-------|-----------------|
+| `[1,2,3,4,5]`, window=3 | `[NaN, 2.0, 3.0, 4.0, NaN]` |
+| `[1,2,3]`, window=3 | `[NaN, 2.0, NaN]` |
+| `[1,2]`, window=3 | ValueError |
+| `[]`, window=3 | ValueError |
+
+## Change Record
+
+- 2024-01-15: Initial draft
+- 2024-01-15: Added interface and edge cases after AI review
+```
+
+The spec is now concrete enough to implement and test against.
+
+## Implement from the spec
+
+Ask your AI to implement it:
+
+> **You:** Please implement the function specified in `specs/03-implementation/moving-average.md`. Put it in `src/signal_processing.py`.
+
+The AI generates code that follows your spec. You review it against your requirements and edge case table.
+
+## Test against the spec
+
+Your edge case table becomes your test cases:
+
+```python
+import numpy as np
+import pytest
+from src.signal_processing import moving_average
+
+def test_basic_moving_average():
+    result = moving_average(np.array([1, 2, 3, 4, 5]), window=3)
+    expected = np.array([np.nan, 2.0, 3.0, 4.0, np.nan])
+    np.testing.assert_array_equal(result, expected)
+
+def test_window_equals_length():
+    result = moving_average(np.array([1, 2, 3]), window=3)
+    expected = np.array([np.nan, 2.0, np.nan])
+    np.testing.assert_array_equal(result, expected)
+
+def test_window_larger_than_array_raises():
+    with pytest.raises(ValueError):
+        moving_average(np.array([1, 2]), window=3)
+
+def test_empty_array_raises():
+    with pytest.raises(ValueError):
+        moving_average(np.array([]), window=3)
+```
+
+The tests come directly from the spec. If they pass, the implementation matches what you specified.
+
+## The pattern
+
+1. **Write what you know** — Capture requirements, note open questions
+2. **Use AI to fill gaps** — Ask about edge cases, tradeoffs, alternatives
+3. **Update the spec** — Record decisions, add concrete examples
+4. **Implement from the spec** — The spec becomes the prompt
+5. **Test against the spec** — Edge cases become test cases
+
+The spec is the source of truth. Code and tests verify that truth is implemented correctly.
+
+## Next steps
+
+You've completed the Get Started path. From here:
+
+- **[The Method](/guides/method/)** — Deeper explanation of spec-driven development
+- **[AI Collaboration](/guides/ai/)** — How to work effectively with AI assistants
+- **[Examples](/guides/examples/)** — More complete examples across project types
