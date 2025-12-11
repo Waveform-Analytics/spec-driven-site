@@ -35,13 +35,19 @@ When you write a spec first:
 
 5. **Update the spec as you learn** — Requirements change. You discover new edge cases. The spec evolves, and the code follows.
 
+## Specs are the real work
+
+A spec isn't documentation you write after the fact. It's the intellectual work itself, expressed in a form humans can reason about efficiently.
+
+Even a skilled programmer will understand a 50-line spec faster than 700 lines of code. The spec removes syntax from the equation so you can focus on the science: the algorithm, the edge cases, the validation approach.
+
+This efficiency benefits everyone. You think more clearly. Reviewers engage with the logic, not the implementation details. AI assistants get unambiguous instructions. And six months later, you remember *why*, not just *what*.
+
 ## Why this works
 
 Most AI-generated code problems come from vague requests. "Write a function to normalize my data" leaves too much undefined. What kind of normalization? What's the input format? What should happen with NaN values?
 
 Specs force you to answer these questions upfront. The AI gets clear instructions, and you get code that does what you actually need.
-
-The spec also becomes documentation. Six months from now, when you need to modify that analysis pipeline, the spec tells you what it was supposed to do—not just what the code happens to do.
 
 ## What's next
 
