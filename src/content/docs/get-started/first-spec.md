@@ -170,6 +170,6 @@ The spec is the source of truth. Code and tests verify that truth is implemented
 
 You've completed the Get Started path. From here:
 
-- **[The Method](/guides/method/)** — Deeper explanation of spec-driven development
-- **[AI Collaboration](/guides/ai/)** — How to work effectively with AI assistants
-- **[Examples](/guides/examples/)** — More complete examples across project types
+- **[The Method](/spec-driven-site/guides/method/)** — Deeper explanation of spec-driven development
+- **[AI Collaboration](/spec-driven-site/guides/ai/)** — How to work effectively with AI assistants
+- **[Examples](/spec-driven-site/guides/examples/)** — More complete examples across project types

@@ -47,8 +47,8 @@ The spec also becomes documentation. Six months from now, when you need to modif
 
 Ready to try it?
 
-1. **[Scaffold a project](/get-started/scaffold/)** — Run our scaffolding script to create a project structure with spec templates ready to go.
+1. **[Scaffold a project](/spec-driven-site/get-started/scaffold/)** — Run our scaffolding script to create a project structure with spec templates ready to go.
 
-2. **[Write your first spec](/get-started/first-spec/)** — Walk through a minimal example: one spec, one implementation, one test.
+2. **[Write your first spec](/spec-driven-site/get-started/first-spec/)** — Walk through a minimal example: one spec, one implementation, one test.
 
 You can be productive within the hour. The method will become natural with practice.

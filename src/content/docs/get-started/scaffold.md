@@ -83,4 +83,4 @@ Fill in the brackets, delete the comments as you go.
 
 ## Next step
 
-Once you have a project, [write your first spec](/get-started/first-spec/).
+Once you have a project, [write your first spec](/spec-driven-site/get-started/first-spec/).
