@@ -3,6 +3,8 @@ title: Your First Spec
 description: Write your first specification with AI assistance.
 ---
 
+import { Steps } from '@astrojs/starlight/components';
+
 Let's write a spec for something simple: a function that calculates the moving average of a time series. This walkthrough shows the full cycle—spec, AI collaboration, implementation, verification.
 
 ## Start with what you need
@@ -158,11 +160,29 @@ The tests come directly from the spec. If they pass, the implementation matches 
 
 ## The pattern
 
-1. **Write what you know** — Capture requirements, note open questions
-2. **Use AI to fill gaps** — Ask about edge cases, tradeoffs, alternatives
-3. **Update the spec** — Record decisions, add concrete examples
-4. **Implement from the spec** — The spec becomes the prompt
-5. **Test against the spec** — Edge cases become test cases
+<Steps>
+
+1. **Write what you know**
+
+   Capture requirements, note open questions
+
+2. **Use AI to fill gaps**
+
+   Ask about edge cases, tradeoffs, alternatives
+
+3. **Update the spec**
+
+   Record decisions, add concrete examples
+
+4. **Implement from the spec**
+
+   The spec becomes the prompt
+
+5. **Test against the spec**
+
+   Edge cases become test cases
+
+</Steps>
 
 The spec is the source of truth. Code and tests verify that truth is implemented correctly.
 

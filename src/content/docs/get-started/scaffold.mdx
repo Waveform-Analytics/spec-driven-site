@@ -3,6 +3,8 @@ title: Scaffold a Project
 description: Run the scaffolding script to bootstrap a spec-driven project.
 ---
 
+import { FileTree, Steps } from '@astrojs/starlight/components';
+
 The scaffolding script creates a project structure with spec templates ready to go. No dependencies—just Python.
 
 ## Quick start
@@ -29,28 +31,28 @@ The script will ask for:
 
 ## What you get
 
-```
-your-project/
-├── specs/
-│   ├── spec-format.md          # How to write specs (reference this!)
-│   ├── 00-overview.md          # Your project overview (start here)
-│   ├── 01-requirements/
-│   │   └── functional.md       # Requirements template
-│   ├── 02-architecture/
-│   │   └── data-flow.md        # If you chose "Data pipeline"
-│   ├── 03-implementation/
-│   ├── 04-algorithms/          # If you chose "Algorithm implementation"
-│   │   └── algorithm-template.md
-│   ├── 05-validation/          # If you chose "Algorithm implementation"
-│   │   └── validation-plan.md
-│   └── 99-decisions/
-│       └── adr-000-template.md # Decision record template
-├── src/
-├── tests/
-├── .claude/CLAUDE.md           # If you chose Claude Code
-├── CONTRIBUTING.md
-└── README.md
-```
+<FileTree>
+- your-project/
+  - specs/
+    - **spec-format.md** How to write specs (reference this!)
+    - **00-overview.md** Your project overview (start here)
+    - 01-requirements/
+      - functional.md Requirements template
+    - 02-architecture/
+      - data-flow.md If you chose "Data pipeline"
+    - 03-implementation/
+    - 04-algorithms/ If you chose "Algorithm implementation"
+      - algorithm-template.md
+    - 05-validation/ If you chose "Algorithm implementation"
+      - validation-plan.md
+    - 99-decisions/
+      - adr-000-template.md Decision record template
+  - src/
+  - tests/
+  - .claude/CLAUDE.md If you chose Claude Code
+  - CONTRIBUTING.md
+  - README.md
+</FileTree>
 
 ## The templates
 
@@ -75,11 +77,19 @@ Fill in the brackets, delete the comments as you go.
 
 ## After scaffolding
 
+<Steps>
+
 1. `cd your-project`
+
 2. Open `specs/00-overview.md` and describe your project
+
 3. Read `specs/spec-format.md` to understand how specs work here
+
 4. Run `git init` to start version control
+
 5. Start a conversation with your AI assistant about requirements
+
+</Steps>
 
 ## Next step
 
