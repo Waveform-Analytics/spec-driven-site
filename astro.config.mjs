@@ -10,6 +10,9 @@ export default defineConfig({
 		starlight({
 			title: 'Spec-Driven Science',
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/Waveform-Analytics/spec-driven-site' }],
+			components: {
+				Footer: './src/components/Footer.astro',
+			},
 			sidebar: [
 				{
 					label: 'Get Started',
