@@ -5,15 +5,15 @@ description: A 5-minute overview of spec-driven development for scientists.
 
 You write code to do science. Analysis pipelines, data processing, algorithms from papers, visualization tools. The code matters because the results matter—but you're not a software developer, and you don't have time to become one.
 
-AI coding assistants can help. But "help" is a spectrum. At one end: generating boilerplate you'll spend hours debugging. At the other: producing reliable, well-structured code you actually understand and can maintain.
+AI coding assistants can help - but "help" is a spectrum. At one end: generating boilerplate you'll spend hours debugging. At the other: producing reliable, well-structured code you actually understand and can maintain.
 
-The difference isn't the AI. It's how you work with it.
+The difference isn't the AI, it's how you work with it.
 
 ## The core idea
 
 **Write specifications before code.**
 
-A specification (spec) is a document that describes what you're building—the requirements, the expected behavior, the edge cases—before any code exists. It's not a formal software engineering artifact. It's a thinking tool.
+A specification (spec) is a document that describes what you're building - the requirements, the expected behavior, the edge cases - before any code exists. It's not a formal software engineering artifact. It's a thinking tool.
 
 When you write a spec first:
 
@@ -57,4 +57,4 @@ Ready to try it?
 
 2. **[Write your first spec](/spec-driven-site/get-started/first-spec/)** — Walk through a minimal example: one spec, one implementation, one test.
 
-You can be productive within the hour. The method will become natural with practice.
+You can get started in less than an hour, and then build up your knowledge over time. 
